@@ -1,0 +1,1 @@
+"""Utility helpers (geometry, drawing, etc.)."""

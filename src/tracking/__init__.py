@@ -1,0 +1,1 @@
+"""Track board state and produce event log."""

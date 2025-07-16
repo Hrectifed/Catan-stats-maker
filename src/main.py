@@ -8,6 +8,7 @@ import argparse, cv2, time
 from src.tracking.game_state import GameState
 from src.detector.color_detect import detect_pieces
 from src.detector.occlusion import is_occluded
+from src.utils.frame_utils import draw_detections
 
 def parse_args():
     p = argparse.ArgumentParser()
@@ -18,7 +19,11 @@ def parse_args():
 
 def main():
     args = parse_args()
-    source = args.camera if args.camera is not None else args.video
+    if args.demo:
+        # For demo mode, use camera 0 as default
+        source = 0
+    else:
+        source = args.camera if args.camera is not None else args.video
     cap = cv2.VideoCapture(source)
     gs = GameState()
     reference = None
@@ -32,6 +37,8 @@ def main():
             detections = detect_pieces(frame)
             events = gs.update(detections)
             # TODO: write events to logger
+            # Draw detections overlay on the frame
+            draw_detections(frame, detections)
         cv2.imshow("Catan Vision", frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break

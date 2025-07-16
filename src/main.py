@@ -33,7 +33,9 @@ def main():
         frame = cv2.flip(frame, 1)  # mirror for convenience
         if reference is None:
             reference = frame.copy()
-        if not is_occluded(frame, reference):
+        if is_occluded(frame, reference):
+            cv2.putText(frame, "Occluded", (30, 60), cv2.FONT_HERSHEY_SIMPLEX, 2, (0,0,255), 4)
+        else:
             detections = detect_pieces(frame)
             events = gs.update(detections)
             # TODO: write events to logger

@@ -5,9 +5,9 @@ python -m src.main --camera 0
 python -m src.main --video data/sample.mp4
 """
 import argparse, cv2, time
-from tracking.game_state import GameState
-from detector.color_detect import detect_pieces
-from detector.occlusion import is_occluded
+from src.tracking.game_state import GameState
+from src.detector.color_detect import detect_pieces
+from src.detector.occlusion import is_occluded
 
 def parse_args():
     p = argparse.ArgumentParser()

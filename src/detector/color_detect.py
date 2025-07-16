@@ -1,5 +1,5 @@
 import cv2, numpy as np
-from config import HSV_RANGES
+from src.config import HSV_RANGES
 
 def get_color_mask(hsv, color):
     lo, hi = HSV_RANGES[color]
